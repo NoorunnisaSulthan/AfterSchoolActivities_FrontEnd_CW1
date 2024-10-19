@@ -1,167 +1,157 @@
 /* General theme colors */
 body {
-    background-color: #FFFDD0; /* Cream background */
-    color: black; /* Black text */
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+  background-color: #fffdd0; /* Cream background */
+  color: black; /* Black text */
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 header {
-    background-color: #ffda62; /* Goldenrod for header */
-    display: flex;
-    justify-content: space-between; /* Space between title and cart */
-    align-items: center;
-    padding: 20px;
-    margin-bottom: 3%;
-
+  background-color: #ffda62; /* Goldenrod for header */
+  display: flex;
+  justify-content: space-between; /* Space between title and cart */
+  align-items: center;
+  padding: 20px;
+  margin-bottom: 3%;
 }
 
 /* Left-aligned site title */
 header h1 {
-    margin: 0;
-    color: black; /* Black text for the site name */
-    font-size: 36px;
-    text-align: left; /* Align title to the left */
+  margin: 0;
+  color: black; /* Black text for the site name */
+  font-size: 36px;
+  text-align: left; /* Align title to the left */
 }
 
 /* Right-aligned cart button */
 header .cart button {
-    background-color: black;
-    color: rgb(255, 215, 115);
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
+
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
 }
 
-header .cart button:hover {
-    background-color: rgb(183, 143, 41);
-}
 
 
 /* flip card styles  */
 main {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
-    gap: 50px; /* Space between the cards */
-    padding: 20px;
-  }
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 4 equal columns */
+  gap: 50px; /* Space between the cards */
+  padding: 20px;
+}
 
-  .card-container{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
-    gap: 50px; /* Space between the cards */
-    padding: 20px;
-  }
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 4 equal columns */
+  gap: 50px; /* Space between the cards */
+  padding: 20px;
+}
 .flip-card {
-    background-color: transparent;
-    width: 250px;
-    height: 250px;
-    perspective: 1000px;
-   
-  }
-  
-  .flip-card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-   
-  }
-  
-  .flip-card:hover .flip-card-inner {
-    transform: rotateY(180deg);
-  }
-  
-  .flip-card-front, .flip-card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
-  
-  .flip-card-front {
-    background-color: #bbb;
-    color: black;
-  }
+  background-color: transparent;
+  width: 300px;
+  height: 450px;
+  perspective: 1000px;
+}
 
-  .flip-card-front img{
-    width: 250px;
-    height: 250px;
-  }
-  
-  .flip-card-back {
-    background-color: #ffda62;
-    color: rgb(23, 22, 22);
-    transform: rotateY(180deg);
-    padding:4%;
-  }
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
 
-  .cart-product {
-    display: flex;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 10px;
-    background-color: #fff;
-    max-width: 400px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f8f9fa;
-  }
-  
-  .cart-product {
-    display: flex;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 10px;
-    background-color: #fff;
-    max-width: 400px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .product-image {
-    width: 100px;
-    height: 100px;
-    border-radius: 8px;
-    margin-right: 15px;
-    object-fit: cover;
-  }
-  
-  .product-details {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  
-  .product-title {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-    margin: 0;
-  }
-  
-  .product-location {
-    font-size: 14px;
-    color: #555;
-    margin: 5px 0;
-  }
-  
-  .product-price {
-    font-size: 16px;
-    font-weight: bold;
-    color: #28a745;
-  }
-  
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+}
+
+.flip-card-front img {
+  width: 100%;
+  height: 150px;
+}
+
+.flip-card-back {
+  background-color: #ffda62;
+  color: rgb(23, 22, 22);
+  transform: rotateY(180deg);
+  padding: 4%;
+}
+
+.cart-product {
+  display: flex;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #fff;
+  max-width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f9fa;
+}
+
+.cart-product {
+  display: flex;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #fff;
+  max-width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  margin-right: 15px;
+  object-fit: cover;
+}
+
+.product-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.product-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+.product-location {
+  font-size: 14px;
+  color: #555;
+  margin: 5px 0;
+}
+
+.product-price {
+  font-size: 16px;
+  font-weight: bold;
+  color: #28a745;
+}
+
