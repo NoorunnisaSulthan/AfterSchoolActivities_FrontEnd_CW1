@@ -47,6 +47,13 @@ main {
     gap: 50px; /* Space between the cards */
     padding: 20px;
   }
+
+  .card-container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
+    gap: 50px; /* Space between the cards */
+    padding: 20px;
+  }
 .flip-card {
     background-color: transparent;
     width: 250px;

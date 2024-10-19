@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ActivityHaven</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <!-- Left-aligned site title -->
+        <h1 v-text="sitename"></h1>
+        <!-- Right-aligned cart button -->
+        <div class="cart" v-on:click="showCart">
+          <button>{{cartItemCount}} Cart</button>
+        </div>
+      </header>
+
+      <main>
+        <div v-if="showProduct" class="card-container">
+         
+          <div
+            class="flip-card"
+            v-for="activity in activities"
+            :key="activity.id"
+          >
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img
+                  v-bind:src="activity.image"
+                  alt="Avatar"
+                  style="width: 250px; height: 250px"
+                />
+              </div>
+              <div class="flip-card-back">
+                <h2>{{ activity.subject }}</h2>
+                <p>Location: {{ activity.location }}</p>
+                <p>Price: {{ activity.price }}</p>
+                <p>Spaces Available: {{ activity.spaces }}</p>
+                <button class="add-to-cart" v-on:click="addToCart(activity.id-1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div v-else>
+          <div class="cart" v-on:click="showCheckout">
+            <button>Checkout</button>
+          </div>
+         
+         <div v-if="showCartItems">
+        <h3>Your Products</h3>
+          <div class="body">
+            
+            <div class="cart-product" v-for="car in cart">
+              <img  v-bind:src="activities[car-1].image" alt="After School Activity" class="product-image">
+              <div class="product-details">
+                <h2 class="product-title"> {{activities[car-1].subject}}</h2>
+                <p class="product-location">{{activities[car-1].location}}</p>
+                <p class="product-price">AED {{activities[car-1].price}}</p>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div v-else >
+        <h2>Checkout</h2>
+        <p>
+          <strong>First Name: </strong>
+          <input v-model.trim="order.firstname" />
+        </p>
+        <p>
+          <strong>Last Name: </strong>
+          <input v-model="order.lastname" />
+        </p>
+        <p><strong>Address</strong> <input v-model="order.address" /></p>
+        <p><strong>City</strong> <input v-model="order.city" /></p>
+        <p>
+          <strong>State</strong>
+          <select v-model="order.state">
+            <option disabled value="">State</option>
+         
+            </option>
+          </select>
+        </p>
+        <p>
+          <strong>Zip</strong
+          ><input v-model.number="order.zip" type="number" />
+        </p>
+
+        <p>
+          <input
+            type="checkbox"
+            id="gift"
+            value="true"
+            v-model="order.gift"
+            v-bind:true-value="order.sendGift"
+            v-bind:false-value="order.dontSendGift"
+          />
+          <label for="gift">Ship as gift?</label>
+        </p>
+        <p>
+          <input type="radio" id="home" value="Home" v-model="order.method" />
+          <label for="home">Home</label>
+        </p>
+        <div
+       
+        v-for="car in cart"
+      
+      >Subject: {{activities[car].subject}}</div>
+      <div>
+        <p>
+
+          <input
+            type="radio"
+            id="business"
+            value="Business"
+            v-model="order.method"
+          />
+          <label for="business">Business</label>
+        </p>
+
+        <!-- <button v-on:click="submitForm">Place Order</button> -->
+        <h2>Order Information</h2>
+        <p>First Name: {{order.firstname}}</p>
+        <p>Last Name: {{order.lastname}}</p>
+        <p>Address: {{order. address}}</p>
+        <p>City: {{order.city}}</p>
+        <p>Zip: {{order. zip}}</p>
+        <p>State: {{order.state}}</p>
+        <p>Gift: {{order.gift}}</p>
+      </div>
+      </div>
+        </div>
+      </main>
+    </div>
+    <!-- <script type="text/javascript">
+      let webstore = new Vue({
+        el: "#app",
+        data: {
+          sitename: "Activity Haven",
+          showProduct: true,
+          activities: [
+            {
+              id: 1,
+              subject: "Soccer Training",
+              location: "Community Field",
+              price: 100,
+              spaces: 5,
+              image: "images/i.png",
+            },
+            {
+              id: 2,
+              subject: "Art Class",
+              location: "City Art Studio",
+              price: 80,
+              spaces: 5,
+              image: "images/i.png",
+            },
+            {
+              id: 3,
+              subject: "Math Tutoring",
+              location: "Online",
+              price: 120,
+              spaces: 5,
+              image: "images/i.png",
+            },
+            {
+              id: 4,
+              subject: "Music Lessons (Piano)",
+              location: "Music Academy",
+              price: 150,
+              spaces: 5,
+              image: "images/i.png",
+            },
+            {
+              id: 5,
+              subject: "Science Workshop",
+              location: "Local Library",
+              price: 90,
+              spaces: 5,
+              image: "images/i.png",
+            },
+            {
+              id: 6,
+              subject: "Chess Club",
+              location: "Recreation Center",
+              price: 50,
+              spaces: 5,
+              image: "images/i.png",
+            },
+            {
+              id: 7,
+              subject: "Swimming Lessons",
+              location: "Aquatic Center",
+              price: 110,
+              spaces: 5,
+              image: "images/i.png",
+            },
+            {
+              id: 8,
+              subject: "Drama Club",
+              location: "High School Theater",
+              price: 70,
+              spaces: 5,
+              image: "images/i.png",
+            },
+            {
+              id: 9,
+              subject: "Coding for Kids",
+              location: "Tech Hub",
+              price: 130,
+              spaces: 5,
+              image: "images/i.png",
+            },
+            {
+              id: 10,
+              subject: "Basketball Training",
+              location: "Sports Arena",
+              price: 100,
+              spaces: 5,
+              image: "images/i.png",
+            },
+          ],
+          cart: [],
+          showCartItems:true,
+          order: {
+            firstname: "",
+            lastname: "",
+            address: "",
+            city: "",
+            zip: "",
+            state: "",
+            method: "Home",
+            sendGift: "Send as a gift",
+            dontSendGift: "Do not send as a gift",
+          },
+        },
+        computed: {
+          cartItemCount: function () {
+            return this.cart.length || "";
+          },
+        },
+        methods: {
+          addToCart: function (index) {
+            this.cart.push(this.activities[index].id);
+            // this.product.availableInventory-=1;
+          },
+          showCart() {
+            this.showProduct = this.showProduct ? false : true;
+          },
+          showCheckout() {
+            this.showCartItems= this.showCartItems ? false : true;
+          },
+        },
+      });
+      //inspect using vue instance variable
+    </script> -->
+ 
+    <script type="text/javascript">
+      let webstore = new Vue({
+        el: "#app",
+        data: {
+          sitename: "Activity Haven",
+          showProduct: true,
+          sortAttribute: "subject", // default sort by subject
+          sortOrder: "asc", // default sort in ascending order
+          activities: [
+            {
+              id: 1,
+              subject: "Soccer Training",
+              location: "Community Field",
+              price: 100,
+              spaces: 5,
+              image: "images/i.png",
+            },
+            {
+              id: 2,
+              subject: "Art Class",
+              location: "City Art Studio",
+              price: 80,
+              spaces: 5,
+              image: "images/i.png",
+            },
+            {
+              id: 3,
+              subject: "Math Tutoring",
+              location: "Online",
+              price: 120,
+              spaces: 5,
+              image: "images/i.png",
+            },
+            {
+              id: 4,
+              subject: "Music Lessons (Piano)",
+              location: "Music Academy",
+              price: 150,
+              spaces: 5,
+              image: "images/i.png",
+            },
+            {
+              id: 5,
+              subject: "Science Workshop",
+              location: "Local Library",
+              price: 90,
+              spaces: 5,
+              image: "images/i.png",
+            },
+            {
+              id: 6,
+              subject: "Chess Club",
+              location: "Recreation Center",
+              price: 50,
+              spaces: 5,
+              image: "images/i.png",
+            },
+            {
+              id: 7,
+              subject: "Swimming Lessons",
+              location: "Aquatic Center",
+              price: 110,
+              spaces: 5,
+              image: "images/i.png",
+            },
+            {
+              id: 8,
+              subject: "Drama Club",
+              location: "High School Theater",
+              price: 70,
+              spaces: 5,
+              image: "images/i.png",
+            },
+            {
+              id: 9,
+              subject: "Coding for Kids",
+              location: "Tech Hub",
+              price: 130,
+              spaces: 5,
+              image: "images/i.png",
+            },
+            {
+              id: 10,
+              subject: "Basketball Training",
+              location: "Sports Arena",
+              price: 100,
+              spaces: 5,
+              image: "images/i.png",
+            },
+          ],
+          cart: [],
+          showCartItems: true,
+          order: {
+            firstname: "",
+            lastname: "",
+            address: "",
+            city: "",
+            zip: "",
+            state: "",
+            method: "Home",
+            sendGift: "Send as a gift",
+            dontSendGift: "Do not send as a gift",
+          },
+        },
+        computed: {
+          cartItemCount: function () {
+            return this.cart.length || "";
+          },
+        
+        },
+        methods: {
+          addToCart: function (index) {
+            this.cart.push(this.activities[index].id);
+          },
+          showCart() {
+            this.showProduct = this.showProduct ? false : true;
+          },
+          showCheckout() {
+            this.showCartItems = this.showCartItems ? false : true;
+          },
+        },
+      });
+    </script>
+    
+  </body>
+</html>
