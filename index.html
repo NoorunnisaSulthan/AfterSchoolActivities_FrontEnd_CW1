@@ -67,10 +67,11 @@
         </div>
         <div v-else>
           <div class="cart" v-on:click="showCheckout">
-            <button>Checkout</button>
+            <button :disabled="!canCheckout">Checkout</button>
           </div>
          
          <div v-if="showCartItems">
+          <div>
         <h3>Your Products</h3>
           <div class="body">
             
@@ -82,10 +83,10 @@
                 <p class="product-price">AED {{activities[car-1].price}}</p>
               </div>
             </div>
-        </div>
-      </div>
-      <div v-else >
-        <h2>Checkout</h2>
+          </div>
+           
+              <div>
+            <h2>Your Information</h2>
         <p>
           <strong>First Name: </strong>
           <input v-model.trim="order.firstname" />
@@ -94,65 +95,29 @@
           <strong>Last Name: </strong>
           <input v-model="order.lastname" />
         </p>
-        <p><strong>Address</strong> <input v-model="order.address" /></p>
-        <p><strong>City</strong> <input v-model="order.city" /></p>
-        <p>
-          <strong>State</strong>
-          <select v-model="order.state">
-            <option disabled value="">State</option>
-         
-            </option>
-          </select>
-        </p>
-        <p>
-          <strong>Zip</strong
-          ><input v-model.number="order.zip" type="number" />
-        </p>
-
-        <p>
-          <input
-            type="checkbox"
-            id="gift"
-            value="true"
-            v-model="order.gift"
-            v-bind:true-value="order.sendGift"
-            v-bind:false-value="order.dontSendGift"
-          />
-          <label for="gift">Ship as gift?</label>
-        </p>
-        <p>
-          <input type="radio" id="home" value="Home" v-model="order.method" />
-          <label for="home">Home</label>
-        </p>
-        <div
-       
-        v-for="car in cart"
+     
       
-      >Subject: {{activities[car].subject}}</div>
-      <div>
         <p>
-
-          <input
-            type="radio"
-            id="business"
-            value="Business"
-            v-model="order.method"
-          />
-          <label for="business">Business</label>
+          <strong>Phone</strong
+          ><input v-model.number="order.phone" type="number" />
         </p>
+
 
         <!-- <button v-on:click="submitForm">Place Order</button> -->
         <h2>Order Information</h2>
         <p>First Name: {{order.firstname}}</p>
         <p>Last Name: {{order.lastname}}</p>
-        <p>Address: {{order. address}}</p>
-        <p>City: {{order.city}}</p>
-        <p>Zip: {{order. zip}}</p>
-        <p>State: {{order.state}}</p>
-        <p>Gift: {{order.gift}}</p>
+        <p>Phone: {{order.phone}}</p>
       </div>
+      </div>
+       
+      </div>
+      <div v-else >
+        <h2>Your order has been submitted!</h2>
+       
       </div>
         </div>
+      </div>
       </main>
     </div>
     <!-- <script type="text/javascript">
@@ -374,13 +339,7 @@
           order: {
             firstname: "",
             lastname: "",
-            address: "",
-            city: "",
-            zip: "",
-            state: "",
-            method: "Home",
-            sendGift: "Send as a gift",
-            dontSendGift: "Do not send as a gift",
+            phone: "",
           },
         },
         computed: {
@@ -402,7 +361,9 @@
               return a[this.sortBy].localeCompare(b[this.sortBy]) * modifier;
             }
           });
-        }
+        },  canCheckout() {
+    return this.order.firstname && this.order.lastname && this.order.phone;
+  }
         
         },
         methods: {
